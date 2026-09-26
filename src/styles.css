@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #100e0c;
+  --color-bg-raised: #181410;
+  --color-surface: #1e1914;
+  --color-fg: #efe6d4;
+  --color-muted: #b7ad9a;
+  --color-faint: #8a8070;
+  --color-line: #3a342c;
+  --color-brass: #b08948;
+  --color-brass-soft: #c9a45c;
+  --color-ink: #100e0c;
+  --color-wine: #7a322c;
+  --color-paper: #efe6d4;
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+    font-family: var(--font-display);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-brass) 45%, transparent);
+    color: var(--color-fg);
+  }
+}
+
+@layer components {
+  .ledger-rule {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-brass) 18%,
+      var(--color-brass) 82%,
+      transparent
+    );
+    opacity: 0.55;
+  }
+
+  .paper-panel {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-xl);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

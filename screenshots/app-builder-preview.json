@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Hawthorne Ledger",
+      "hasCanvas": false,
+      "bodyTextLen": 3955,
+      "bodyTextHash": "6ad0124673d1f5171e01ba12cffa57e6c0981b5e87677f6b391fb546561f367e",
+      "bodyTextPrefix": "Hawthorne Ledger THE INHERITANCE GAMES Plot Chapters Characters ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Hawthorne Ledger",
+      "hasCanvas": false,
+      "bodyTextLen": 3891,
+      "bodyTextHash": "90f09f977759dc2c3448d26186d6a998bffd664880c43fdce0be3c761f49f0d3",
+      "bodyTextPrefix": "Hawthorne Ledger JENNIFER LYNN BARNES · 2020 The Inheritance Gam",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
