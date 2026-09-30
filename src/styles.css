@@ -94,6 +94,7 @@
     opacity: 0;
   }
 
+  /* First frame visible immediately (even before animation / if motion is reduced) */
   .estate-slide-1 {
     opacity: 1;
   }
@@ -104,20 +105,21 @@
     height: 100%;
     object-fit: cover;
     transform: scale(1.08);
-    filter: brightness(0.78) saturate(0.92);
+    filter: brightness(0.82) saturate(0.95);
   }
 
   .estate-veil {
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgb(16 14 12 / 0.22) 0%, rgb(16 14 12 / 0.42) 36%, rgb(16 14 12 / 0.74) 100%),
-      radial-gradient(ellipse at 50% 28%, transparent 10%, rgb(16 14 12 / 0.28) 100%);
+      linear-gradient(180deg, rgb(16 14 12 / 0.18) 0%, rgb(16 14 12 / 0.36) 40%, rgb(16 14 12 / 0.7) 100%),
+      radial-gradient(ellipse at 50% 28%, transparent 12%, rgb(16 14 12 / 0.22) 100%);
   }
 
   @media (prefers-reduced-motion: no-preference) {
     .estate-slide {
-      animation: estate-crossfade 42s ease-in-out infinite;
+      animation: estate-crossfade 36s linear infinite;
+      animation-fill-mode: both;
     }
 
     .estate-slide-1 {
@@ -125,42 +127,47 @@
     }
 
     .estate-slide-2 {
-      animation-delay: 14s;
+      animation-delay: 12s;
     }
 
     .estate-slide-3 {
-      animation-delay: 28s;
+      animation-delay: 24s;
     }
 
     .estate-photo {
-      animation: estate-drift 42s ease-in-out infinite;
+      animation: estate-drift 36s ease-in-out infinite;
     }
 
     .estate-slide-2 .estate-photo {
-      animation-delay: 14s;
+      animation-delay: 12s;
     }
 
     .estate-slide-3 .estate-photo {
-      animation-delay: 28s;
+      animation-delay: 24s;
     }
   }
 }
 
+/*
+  3 slides x 12s each = 36s loop.
+  Each slide: fade in, hold, fade out. Starts at opacity 1 so the first
+  frame is visible on load (no black flash).
+*/
 @keyframes estate-crossfade {
   0% {
-    opacity: 0;
-  }
-  6% {
     opacity: 1;
   }
   28% {
     opacity: 1;
   }
-  36% {
+  33.333% {
+    opacity: 0;
+  }
+  95% {
     opacity: 0;
   }
   100% {
-    opacity: 0;
+    opacity: 1;
   }
 }
 
@@ -169,7 +176,7 @@
     transform: scale(1.08) translate3d(0, 0, 0);
   }
   50% {
-    transform: scale(1.16) translate3d(-1.6%, 1.2%, 0);
+    transform: scale(1.14) translate3d(-1.4%, 1%, 0);
   }
   100% {
     transform: scale(1.08) translate3d(0, 0, 0);
@@ -177,11 +184,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  .estate-slide {
+    animation: none !important;
+  }
+
+  .estate-photo {
+    animation: none !important;
+  }
+
+  .estate-slide-1 {
+    opacity: 1 !important;
   }
 }
