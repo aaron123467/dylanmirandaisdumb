@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useRouterState } from "@tanstack/react-router";
 
 const frames = [
   { src: "/bg/house.jpg", label: "Hawthorne House" },
@@ -7,37 +6,15 @@ const frames = [
   { src: "/bg/great-room.jpg", label: "Great Room" },
 ] as const;
 
-function sceneForPath(pathname: string) {
-  if (pathname.startsWith("/themes")) return 1;
-  if (pathname.startsWith("/characters") || pathname.startsWith("/artifacts")) return 2;
-  return 0;
-}
-
 export function EstateBackdrop() {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const [index, setIndex] = useState(() => sceneForPath(pathname));
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const pick = () => {
-      const base = sceneForPath(pathname);
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      if (max < 240) {
-        setIndex(base);
-        return;
-      }
-      const t = Math.min(1, Math.max(0, window.scrollY / max));
-      const step = t < 0.34 ? 0 : t < 0.67 ? 1 : 2;
-      setIndex((base + step) % frames.length);
-    };
-
-    pick();
-    window.addEventListener("scroll", pick, { passive: true });
-    window.addEventListener("resize", pick);
-    return () => {
-      window.removeEventListener("scroll", pick);
-      window.removeEventListener("resize", pick);
-    };
-  }, [pathname]);
+    const id = window.setInterval(() => {
+      setIndex((current) => (current + 1) % frames.length);
+    }, 3000);
+    return () => window.clearInterval(id);
+  }, []);
 
   return (
     <div className="estate-backdrop" aria-hidden>
